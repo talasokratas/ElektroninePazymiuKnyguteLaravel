@@ -15,16 +15,16 @@ class CreateGradesTable extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('lecture_id');
-            $table->int('student_id');
-            $table->int('grade');
+            $table->integer('lecture_id');
+            $table->integer('student_id');
+            $table->integer('grade');
         });
     }
 
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return voidgit commit
      */
     public function down()
     {

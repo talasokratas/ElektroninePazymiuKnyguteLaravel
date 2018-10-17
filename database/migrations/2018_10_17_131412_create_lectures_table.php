@@ -15,7 +15,7 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('name');
+            $table->string('name');
             $table->text('description');
         });
     }
