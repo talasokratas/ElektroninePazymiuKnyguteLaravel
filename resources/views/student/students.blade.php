@@ -4,9 +4,10 @@
 
 @section('content')
 
+
+<div class="table-wrapper">
     <h2>Studentų sąrašas</h2>
     <a href={{ route('student.create') }} class="btn btn-primary" style="margin:2em">Pridėti naują studentą</a>
-<div class="table-wrapper">
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>

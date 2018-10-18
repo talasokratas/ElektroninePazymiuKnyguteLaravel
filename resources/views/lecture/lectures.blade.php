@@ -1,12 +1,13 @@
 @extends('layouts/app')
 
-@section('title', 'lectureai')
+@section('title', 'Paskaitos')
 
 @section('content')
 
+
+<div class="table-wrapper">
     <h2>Paskaitų sąrašas</h2>
     <a href={{ route('lecture.create') }} class="btn btn-primary" style="margin:2em">Pridėti naują paskaitą</a>
-<div class="table-wrapper">
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>

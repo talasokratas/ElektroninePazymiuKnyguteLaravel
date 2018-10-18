@@ -38,7 +38,7 @@ class StudentStoreRequest extends FormRequest
             'email.email' => 'Įveskite teisingą elektroninio pašto adresą!',
             'name.required' => 'Įveskite vardą!',
             'surname.required' => 'Įveskite pavardę!',
-            'number.required' => 'Įveskite telefono numerį!'
+            'phone.required' => 'Įveskite telefono numerį!'
         ];
     }
 }

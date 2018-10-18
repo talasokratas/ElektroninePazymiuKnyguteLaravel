@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LectureStoreRequest;
 use App\Lecture;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,9 @@ class LecturesController extends Controller
 {
     public function index()
     {
-
-        return view('course/courses', ['courses' => Course::all()]);
-
+        $count = 1;
+        $lectures = Lecture::orderBy('name','asc')->paginate(20);
+        return view('lecture/lectures', ['lectures' => $lectures, 'count' => $count]);
     }
 
     /**
@@ -21,7 +22,7 @@ class LecturesController extends Controller
      */
     public function create()
     {
-        return view('course/create');
+        return view('lecture/create');
     }
 
     /**
@@ -30,15 +31,13 @@ class LecturesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LectureStoreRequest $request)
     {
-        $course = new Lecture;
-        $course->name = $request->name;
-        $course->description = $request->description;
-
-        $course->save();
-        Session::flash('message', 'Kursas sekmingai sukurtas!');
-        return redirect(route('courses.show'));
+        $lecture = new Lecture;
+        $lecture->name = $request->name;
+        $lecture->description = $request->description;
+        $lecture->save();
+        return redirect(route('lectures.show'));
     }
 
     /**
@@ -63,10 +62,10 @@ class LecturesController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::find($id);
+        $lecture = Lecture::find($id);
 
-        return view('course.edit')
-            ->with('course', $course);
+        return view('lecture.edit')
+            ->with('lecture', $lecture);
     }
 
     /**
@@ -76,15 +75,14 @@ class LecturesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LectureStoreRequest $request, $id)
     {
-        $course = Course::find($id);
-        $course->name = $request->name;
-        $course->description = $request->description;
+        $lecture = Lecture::find($id);
+        $lecture->name = $request->name;
+        $lecture->description = $request->description;
 
-        $course->save();
-        Session::flash('message', 'Kursas sekmingai pataisytas!');
-        return redirect(route('courses.show'));
+        $lecture->save();
+        return redirect(route('lectures.show'));
     }
 
     /**
@@ -95,10 +93,9 @@ class LecturesController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::find($id);
-        $course->delete();
-        Session::flash('message', 'Kursas sekmingai istrintas!');
-        return redirect('/courses');
+        $lecture = Lecture::find($id);
+        $lecture->delete();
+        return redirect('/lectures');
 
     }
 }

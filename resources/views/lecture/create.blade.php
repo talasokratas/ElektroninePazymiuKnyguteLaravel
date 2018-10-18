@@ -1,26 +1,18 @@
 @extends('layouts/app')
 
-@section('title', 'Studentai')
+@section('title', 'Paskaitos')
 
 @section('content')
 <div class="form-wrapper">
- <form action={{route('student.save')}} method="post">
+ <form action={{route('lecture.save')}} method="post">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="name">Studento vardas</label>
+            <label for="name">Paskaitos Pavadinimas</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
         </div>
         <div class="form-group">
-            <label for="surname">Studento pavardė</label>
-            <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname') }}">
-        </div>
-        <div class="form-group">
-            <label for="email">Elektroninis paštas</label>
-            <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
-        </div>
-        <div class="form-group">
-            <label for="phone">Telefono numeris</label>
-            <input type="number" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
+            <label for="surname">Paskaitos aprašymas</label>
+            <input type="textbox" class="form-control" id="description" name="description" value="{{ old('description') }}">
         </div>
         <button type="submit" class="btn btn-primary mb-2">Saugoti</button>
     </form>

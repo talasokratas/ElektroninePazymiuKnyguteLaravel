@@ -23,6 +23,11 @@ Route::delete('/student/{student}','StudentsController@destroy');
 
 
 Route::get('/lectures', 'LecturesController@index')->name('lectures.show');
+Route::get('lecture/create', 'LecturesController@create')->name('lecture.create');
+Route::post('/lectures', 'LecturesController@store')->name('lecture.save');
+Route::get('/lecture/{lecture}/edit', 'LecturesController@edit')->name('lecture.edit');
+Route::put('lecture/{lecture}', 'LecturesController@update');
+Route::delete('lecture/{lecture}','LecturesController@destroy');
 
 
 Auth::routes();
