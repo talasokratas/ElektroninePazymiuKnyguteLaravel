@@ -17,6 +17,11 @@ Route::get('/', function () {
 Route::get('/students', 'StudentsController@index')->name('students.show');
 Route::get('/student/create','StudentsController@create')->name('student.create');
 Route::post('/students','StudentsController@store')->name('student.save');
+Route::get('/student/{student}/edit','StudentsController@edit')->name('student.edit');
+Route::put('/student/{student}','StudentsController@update');
+Route::delete('/student/{student}','StudentsController@destroy');
+
+
 Route::get('/lectures', 'LecturesController@index')->name('lectures.show');
 
 

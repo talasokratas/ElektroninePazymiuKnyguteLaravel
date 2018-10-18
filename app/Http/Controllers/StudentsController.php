@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentStoreRequest;
 use App\Student;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,7 +14,8 @@ class StudentsController extends Controller
     public function index()
     {
 
-        return view('student/students', ['students' => Student::all()->sortBy('surname'), 'count' => $count = 1]);
+        $students = Student::orderBy('surname', 'desc')->paginate(20);
+        return view('student/students', ['students' => $students, 'count' => $count = 1]);
 
     }
 
@@ -31,13 +35,14 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentStoreRequest $request)
     {
+
         $student = new Student;
-        $student->name = $request->name;
-        $student->surname = $request->surname;
-        $student->email = $request->email;
-        $student->phone = $request->phone;
+        $student->name = $request->validated();
+        $student->surname = $request->validated();
+        $student->email = $request->validated();
+        $student->phone = $request->validated();
         $student->save();
 
         return redirect(route('students.show'));
@@ -67,7 +72,7 @@ class StudentsController extends Controller
     {
         $student = Student::find($id);
 
-        return view('course.edit')
+        return view('student.edit')
             ->with('student', $student);
     }
 
@@ -78,7 +83,7 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentStoreRequest $request, $id)
     {
         $student = Student::find($id);
         $student->name = $request->name;

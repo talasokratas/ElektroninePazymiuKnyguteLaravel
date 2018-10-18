@@ -26,10 +26,14 @@
                 <td>{{$student->surname}}</td>
                 <td>{{$student->email}}</td>
                 <td>{{$student->phone}}</td>
-                <td><a href={{ url('student/'.$student->id.'/edit') }}><i class="fa fa-edit">Taisyti</i></a>
+                <td>
                     <form method="post" action={{ url('student/'.$student->id) }}>
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn-danger">Trinti</button>
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash"> Trinti</i></button>
+                        @csrf
+                    </form>
+                    <form method="get" action={{ url('student/'.$student->id.'/edit') }}>
+                        <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
                         @csrf
                     </form>
                 </td>
@@ -37,6 +41,7 @@
         @endforeach
         </tbody>
     </table>
+    {{$students->links()}}
 </div>
 
 @endsection
