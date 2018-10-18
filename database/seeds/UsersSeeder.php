@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
@@ -15,6 +16,7 @@ class UsersSeeder extends Seeder
             'name' => 'Evaldas Vaitonis',
             'email' => 'evaldas.vaitonis@gmail.com',
             'password' => bcrypt('secret'),
+            'created_at' => Carbon::now()
         ]);
     }
 }

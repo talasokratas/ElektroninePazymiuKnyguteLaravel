@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class GradesSeeder extends Seeder
@@ -14,25 +15,29 @@ class GradesSeeder extends Seeder
         DB::table('grades')->insert([
             'lecture_id' => '1',
             'student_id' => '1',
-            'grade' => '9'
+            'grade' => '9',
+             'created_at' => Carbon::now()
 
         ]);
         DB::table('grades')->insert([
             'lecture_id' => '1',
             'student_id' => '2',
-            'grade' => '10'
+            'grade' => '10',
+             'created_at' => Carbon::now()
 
         ]);
         DB::table('grades')->insert([
             'lecture_id' => '2',
             'student_id' => '1',
-            'grade' => '8'
+            'grade' => '8',
+             'created_at' => Carbon::now()
 
         ]);
         DB::table('grades')->insert([
             'lecture_id' => '2',
             'student_id' => '2',
-            'grade' => '9'
+            'grade' => '9',
+             'created_at' => Carbon::now()
 
         ]);
 

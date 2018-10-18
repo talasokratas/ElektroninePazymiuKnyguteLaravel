@@ -1,0 +1,11 @@
+.form-wrapper {
+    width:60%;
+    margin: 0 auto;
+}.table-wrapper {
+    width:80%;
+    margin: 0 auto;
+}
+
+h2 {
+    display:inline-block;
+ }
