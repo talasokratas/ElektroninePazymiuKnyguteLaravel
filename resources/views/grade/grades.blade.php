@@ -18,17 +18,11 @@
         <tbody>
         @foreach ($grades as $grade)
             <tr>
-                <td>{{$lectures->find($grade->lecture_id)->name}}</td>
+                <td>{{$grade->lecture->name}}</td>
                 <td>{{$grade->grade}}</td>
                 <td>
-                    <form method="post" action={{ url('student/'.$grade->id) }}>
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash"> Trinti</i></button>
-                        @csrf
-                    </form>
-                    <form method="get" action={{ url('student/'.$grade->id.'/edit') }}>
+                    <form method="get" action={{ url('grade/'.$grade->id) }}>
                         <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
-                        @csrf
                     </form>
                 </td>
             </tr>
@@ -38,3 +32,4 @@
 </div>
 
 @endsection
+

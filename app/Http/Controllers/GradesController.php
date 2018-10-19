@@ -38,9 +38,24 @@ class GradesController extends Controller
     public function results($id)
     {
         $student = Student::find($id);
-        $lectures = Lecture::all();
         $grades = Grade::where('student_id', $id)->get();
-        return view('grade.grades', ['student'=> $student, 'grades' => $grades,'lectures'=> $lectures]);
+        return view('grade.grades', ['student'=> $student, 'grades' => $grades]);
+    }
+
+    public function edit($id){
+
+        $grade = Grade::find($id);
+
+        return view('grade.edit',['grade'=> $grade]);
+    }
+
+    public function update(GradeStoreRequest $request, $id)
+    {
+        $grade = Grade::find($id);
+        $grade->grade = $request->grade;
+        $grade->save();
+
+        return redirect('student/'.$grade->student_id);
     }
 
 }

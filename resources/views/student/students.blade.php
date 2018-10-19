@@ -7,7 +7,9 @@
 
 <div class="table-wrapper">
     <h2>Studentų sąrašas</h2>
-    <a href={{ route('student.create') }} class="btn btn-primary" style="margin:2em">Pridėti naują studentą</a>
+    @if(Auth::user())
+        <a href={{ route('student.create') }} class="btn btn-primary" style="margin:2em">Pridėti naują studentą</a>
+    @endif
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
@@ -17,7 +19,9 @@
             <th>E. paštas</th>
             <th>Telefono nr.</th>
             <th>Įvertinimas</th>
-            <th>Veiksmai</th>
+            @if(Auth::user())
+                <th>Veiksmai</th>
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -31,20 +35,20 @@
                 <td>
                     <form method="get" action={{ url('student/'.$student->id) }}>
                         <button type="submit" class="btn-success"><i class="fa fa-view"> Peržiūrėti įvertinimus</i></button>
-                        @csrf
                     </form>
                 </td>
+                @if(Auth::user())
                 <td>
                     <form method="post" action={{ url('student/'.$student->id) }}>
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash"> Trinti</i></button>
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash"> Trinti Studentą</i></button>
                         @csrf
                     </form>
                     <form method="get" action={{ url('student/'.$student->id.'/edit') }}>
                         <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
-                        @csrf
                     </form>
                 </td>
+                @endif
             </tr>
         @endforeach
         </tbody>
