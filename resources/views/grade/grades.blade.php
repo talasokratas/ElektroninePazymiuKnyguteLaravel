@@ -12,7 +12,9 @@
         <tr>
             <th>Paskaita</th>
             <th>Balas</th>
-            <th>Veiksmai</th>
+            @if(Auth::user())
+                <th>Veiksmai</th>
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -20,11 +22,13 @@
             <tr>
                 <td>{{$grade->lecture->name}}</td>
                 <td>{{$grade->grade}}</td>
-                <td>
-                    <form method="get" action={{ url('grade/'.$grade->id) }}>
-                        <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
-                    </form>
-                </td>
+                @if(Auth::user())
+                    <td>
+                        <form method="get" action={{ url('grade/'.$grade->id) }}>
+                            <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
+                        </form>
+                    </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

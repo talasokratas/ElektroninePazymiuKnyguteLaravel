@@ -12,8 +12,8 @@
                 <input type="text" class="form-control" id="name" name="name" value="{{$lecture->name}}">
             </div>
             <div class="form-group">
-                <label for="surname">Paskaitos aprašymas</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{$lecture->description}}">
+                <label for="tinyMCE">Paskaitos aprašymas</label>
+                <input type="text" class="form-control" id="tinyMCE" name="description" value="{{$lecture->description}}">
             </div>
             <button type="submit" class="btn btn-primary mb-2">Saugoti</button>
         </form>

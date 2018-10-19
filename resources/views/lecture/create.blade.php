@@ -11,8 +11,8 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
         </div>
         <div class="form-group">
-            <label for="surname">Paskaitos aprašymas</label>
-            <input type="textbox" class="form-control" id="description" name="description" value="{{ old('description') }}">
+            <label for="tinyMCE">Paskaitos aprašymas</label>
+            <input type="textbox" class="form-control" id="tinyMCE" name="description" value="{{ old('description') }}">
         </div>
         <button type="submit" class="btn btn-primary mb-2">Saugoti</button>
     </form>

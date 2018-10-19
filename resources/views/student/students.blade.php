@@ -34,18 +34,18 @@
                 <td>{{$student->phone}}</td>
                 <td>
                     <form method="get" action={{ url('student/'.$student->id) }}>
-                        <button type="submit" class="btn-success"><i class="fa fa-view"> Peržiūrėti įvertinimus</i></button>
+                        <button type="submit" class="btn-primary"><i class="fa fa-view"> Peržiūrėti įvertinimus</i></button>
                     </form>
                 </td>
                 @if(Auth::user())
                 <td>
                     <form method="post" action={{ url('student/'.$student->id) }}>
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash"> Trinti Studentą</i></button>
+                        <button type="submit" class="btn-outline-primary"><i class="fa fa-trash"> Trinti</i></button>
                         @csrf
                     </form>
                     <form method="get" action={{ url('student/'.$student->id.'/edit') }}>
-                        <button type="submit" class="btn-warning"><i class="fa fa-edit"> Taisyti</i></button>
+                        <button type="submit" class="btn-outline-primary"><i class="fa fa-edit"> Taisyti</i></button>
                     </form>
                 </td>
                 @endif
