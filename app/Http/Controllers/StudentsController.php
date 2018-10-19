@@ -39,10 +39,10 @@ class StudentsController extends Controller
     {
 
         $student = new Student;
-        $student->name = $request->validated();
-        $student->surname = $request->validated();
-        $student->email = $request->validated();
-        $student->phone = $request->validated();
+        $student->name = $request->name;
+        $student->surname = $request->surname;
+        $student->email = $request->email;
+        $student->phone = $request->phone;
         $student->save();
 
         return redirect(route('students.show'));
