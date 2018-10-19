@@ -16,6 +16,7 @@
             <th>Pavardė</th>
             <th>E. paštas</th>
             <th>Telefono nr.</th>
+            <th>Įvertinimas</th>
             <th>Veiksmai</th>
         </tr>
         </thead>
@@ -27,6 +28,12 @@
                 <td>{{$student->surname}}</td>
                 <td>{{$student->email}}</td>
                 <td>{{$student->phone}}</td>
+                <td>
+                    <form method="get" action={{ url('student/'.$student->id) }}>
+                        <button type="submit" class="btn-success"><i class="fa fa-view"> Peržiūrėti įvertinimus</i></button>
+                        @csrf
+                    </form>
+                </td>
                 <td>
                     <form method="post" action={{ url('student/'.$student->id) }}>
                         {{ method_field('DELETE') }}

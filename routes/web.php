@@ -22,6 +22,7 @@ Route::put('/student/{student}','StudentsController@update');
 Route::delete('/student/{student}','StudentsController@destroy');
 
 
+
 Route::get('/lectures', 'LecturesController@index')->name('lectures.show');
 Route::get('lecture/create', 'LecturesController@create')->name('lecture.create');
 Route::post('/lectures', 'LecturesController@store')->name('lecture.save');
@@ -31,6 +32,7 @@ Route::delete('lecture/{lecture}','LecturesController@destroy');
 
 Route::get('/grade', 'GradesController@create')->name('grade.create');
 Route::post('/grade', 'GradesController@store')->name('grade.save');
+Route::get('/student/{student}','GradesController@results');
 
 Auth::routes();
 

@@ -35,4 +35,12 @@ class GradesController extends Controller
         return redirect(route('grade.create'));
     }
 
+    public function results($id)
+    {
+        $student = Student::find($id);
+        $lectures = Lecture::all();
+        $grades = Grade::where('student_id', $id)->get();
+        return view('grade.grades', ['student'=> $student, 'grades' => $grades,'lectures'=> $lectures]);
+    }
+
 }
