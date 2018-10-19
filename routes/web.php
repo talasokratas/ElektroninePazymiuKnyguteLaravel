@@ -29,6 +29,8 @@ Route::get('/lecture/{lecture}/edit', 'LecturesController@edit')->name('lecture.
 Route::put('lecture/{lecture}', 'LecturesController@update');
 Route::delete('lecture/{lecture}','LecturesController@destroy');
 
+Route::get('/grade', 'GradesController@create')->name('grade.create');
+Route::post('/grade', 'GradesController@store')->name('grade.save');
 
 Auth::routes();
 

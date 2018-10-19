@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
+use App\Http\Requests\GradeStoreRequest;
+use App\Lecture;
+use App\Student;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
@@ -13,91 +17,22 @@ class GradesController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('course/create');
+        $students = Student::orderBy('surname','asc')->get();
+        $lectures = Lecture::orderBy('name','asc')->get();
+        return view('grade/create', ['students' => $students, 'lectures' => $lectures]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(GradeStoreRequest $request)
     {
-        $course = new Course;
-        $course->name = $request->name;
-        $course->description = $request->description;
+        $grade = new Grade;
+        $grade->grade = $request->grade;
+        $grade->student_id = $request->student_id;
+        $grade->lecture_id = $request->lecture_id;
 
-        $course->save();
-        Session::flash('message', 'Kursas sekmingai sukurtas!');
-        return redirect(route('courses.show'));
+        $grade->save();
+        return redirect(route('grade.create'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-//        $course = Course::find($id);
-//
-//        return View::make('course.show')
-//            ->with('course', $course);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $course = Course::find($id);
-
-        return view('course.edit')
-            ->with('course', $course);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $course = Course::find($id);
-        $course->name = $request->name;
-        $course->description = $request->description;
-
-        $course->save();
-        Session::flash('message', 'Kursas sekmingai pataisytas!');
-        return redirect(route('courses.show'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $course = Course::find($id);
-        $course->delete();
-        Session::flash('message', 'Kursas sekmingai istrintas!');
-        return redirect('/courses');
-
-    }
 }

@@ -36,6 +36,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('grade.create') }}">{{ __('Įvesti naują įvertinimą') }}</a>
+                        </li><li class="nav-item">
                             <a class="nav-link" href="{{ route('students.show') }}">{{ __('Studentai') }}</a>
                         </li>
                         <li class="nav-item">
